@@ -1,0 +1,19 @@
+{
+  "name": "line-login-php",
+  "repositories": [
+    {
+      "type": "pear",
+      "url": "https://pear.cakephp.org"
+    }
+  ],
+  "require": {
+    "cakephp/cakephp": "3.4.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "config": {
+    "vendor-dir": "Vendor/",
+    "secure-http": false
+  }
+}
