@@ -6,6 +6,8 @@ use App\Controller\Component\LineApiClient;
 use Cake\Core\Configure;
 use Cake\Log\Log;
 
+const LINE_LOGIN_URL = 'https://access.line.me/dialog/oauth/weblogin';
+
 class WebController extends AppController
 {
     public function index()
@@ -16,10 +18,11 @@ class WebController extends AppController
 
     public function login()
     {
-        // redirect
-        $url = 'https://access.line.me/dialog/oauth/weblogin?response_type=code'
-            . '&client_id=' . Configure::read("channel.channelId")
-            . '&redirect_uri=' . Configure::read("channel.callbackUrl");
+        $query = http_build_query(array('response_type' => 'code',
+            'client_id' => Configure::read("channel.channelId"),
+            'redirect_uri' => Configure::read("channel.callbackUrl")));
+        $url = LINE_LOGIN_URL . '?' . $query;
+        Log::debug($url);
         $this->redirect($url);
     }
 
